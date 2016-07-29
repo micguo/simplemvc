@@ -1,6 +1,6 @@
 {
     "autoload": {
-        "classmap": ["public/Library", "public/Template", "public/Controller"]
+        "classmap": ["Model", "Template", "Controller"]
     },
     "require": {
         "twig/twig": "~1.0"

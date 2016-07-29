@@ -1,6 +1,7 @@
 <?php
-define('ROOTDIR', realpath(__DIR__.'/../'));
-define('AUTOLOADER', ROOTDIR .'/vendor/autoload.php');
+define('ROOTDIR', realpath(__DIR__ . '/../'));
+define('TEMPLATEDIR', ROOTDIR . "/Template/");
+define('AUTOLOADER', ROOTDIR . '/vendor/autoload.php');
 
 if (!file_exists(AUTOLOADER)) {
     throw new Exception("Please do 'composer install'");
@@ -12,7 +13,11 @@ $routeArray = explode("/", $_SERVER['REQUEST_URI']);
 try {
     switch (count($routeArray)) {
         case 2:
-            $controllerName = ucfirst(strtolower($routeArray[1])) . "Controller";
+            if (empty($routeArray[1])) {
+                $controllerName = "HomeController";
+            } else {
+                $controllerName = ucfirst(strtolower($routeArray[1])) . "Controller";
+            }
             $actionName = "indexAction";
             break;
         case 3:
@@ -37,5 +42,7 @@ try {
     // Call page action
     $controllerObj->$actionName();
 } catch (Exception $e) {
-    echo $e->getMessage();
+    echo "<pre>";
+    echo $e;
+    echo "</pre>";
 }

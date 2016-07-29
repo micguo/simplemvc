@@ -7,6 +7,7 @@ class Database
      * Get PDO connection
      * 
      * @return PDO connection
+     * @todo Use config file for db connection info
      */
     public static function getConnection()
     {
