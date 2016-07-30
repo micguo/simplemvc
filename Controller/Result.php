@@ -5,12 +5,12 @@ class ResultController
     {
         $template = new Template("Result/Index");
 
-        if (empty($GLOBALS['activeUser'])) {
+        if (!User::isLogin()) {
             // If user isn't logged in
-            $form = new Form_Login();
+            $form = new FormLogin();
             $form->addError('Please log in');
         } else {
-            $form = new Form_Search();
+            $form = new FormSearch();
             $form->handleSubmit();
         }
         $data = array(

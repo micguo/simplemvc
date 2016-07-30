@@ -1,5 +1,5 @@
 <?php
-class Form_Login extends Form_Base
+class FormLogin extends FormBase
 {
     function __construct()
     {
@@ -30,6 +30,7 @@ class Form_Login extends Form_Base
             $this->addError("Username and password dosen't match.");
         } else {
             $_SESSION['uid'] = $userObj->getId();
+            User::loginBySession();
         }
     }
 
@@ -39,9 +40,6 @@ class Form_Login extends Form_Base
      */
     protected function submit()
     {
-        // Log user in!
-        global $activeUser;
-        $activeUser = new User();
-        $activeUser->load($_SESSION['uid']);
+    
     }
 }

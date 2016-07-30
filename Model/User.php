@@ -7,6 +7,8 @@ class User
     private $name = null;
     private $email = null;
 
+    private static $activeUser = null;
+
     function __construct()
     {
         $this->db = Database::getConnection();
@@ -63,6 +65,10 @@ class User
      */
     public function load($userInfo)
     {
+        if (!is_numeric($userInfo) && !is_array($userInfo)) {
+            throw new InvalidArgumentException();
+        }
+
         if (is_numeric($userInfo)) {
             $userInfo = array('Id' => $userInfo);
         }
@@ -114,12 +120,12 @@ class User
 
         $stat = $this->db->prepare($sql);
         $stat->execute($data);
-        $retrunVal = false;
+        $returnVal = false;
         if ($stat->rowCount() > 0) {
-            $retrunVal = true;
+            $returnVal = true;
         }
 
-        return $retrunVal;
+        return $returnVal;
     }
 
     /**
@@ -135,12 +141,12 @@ class User
 
         $stat = $this->db->prepare($sql);
         $stat->execute($data);
-        $retrunVal = false;
+        $returnVal = false;
         if ($stat->rowCount() > 0) {
-            $retrunVal = true;
+            $returnVal = true;
         }
 
-        return $retrunVal;
+        return $returnVal;
     }
 
     public function setId($id)
@@ -177,4 +183,43 @@ class User
     {
         $this->email = $email;
     }
+
+    // Active user section start
+    public static function getActiveUser()
+    {
+        return self::$activeUser;
+    }
+
+    public static function isLogin()
+    {
+        if (!empty(self::$activeUser)) {
+            $returnVal = true;
+        } else {
+            $returnVal = false;
+        }
+
+        return $returnVal;
+    }
+
+    public static function loginBySession()
+    {
+        if (!empty($_SESSION['uid'])) {
+            self::login($_SESSION['uid']);
+        }
+    }
+
+    private static function login($uid)
+    {
+        $userObj = new User();
+        $userObj->load($uid);
+        self::$activeUser = $userObj;
+    }
+
+    public static function logout()
+    {
+        self::$activeUser = null;
+        unset($_SESSION['uid']);
+    }
+
+    // Active user section end
 }

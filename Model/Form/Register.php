@@ -1,5 +1,5 @@
 <?php
-class Form_Register extends Form_Base
+class FormRegister extends FormBase
 {
     function __construct()
     {

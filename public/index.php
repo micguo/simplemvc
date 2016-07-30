@@ -12,9 +12,7 @@ if (!file_exists(AUTOLOADER)) {
 require_once(AUTOLOADER);
 
 if (!empty($_SESSION['uid'])) {
-    global $activeUser;
-    $activeUser = new User();
-    $activeUser->load($_SESSION['uid']);
+    User::loginBySession();
 }
 
 // Remove GET parameter from url when doing routing process

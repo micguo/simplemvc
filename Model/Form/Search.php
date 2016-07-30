@@ -1,5 +1,5 @@
 <?php
-class Form_Search extends Form_Base
+class FormSearch extends FormBase
 {
     function __construct()
     {

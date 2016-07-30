@@ -3,8 +3,7 @@ class LogoutController
 {
     function indexAction()
     {
-        unset($GLOBALS['activeUser']);
-        unset($_SESSION['uid']);
+        User::logout();
         header("Location: http://{$_SERVER['SERVER_NAME']}/");
     }
 }

@@ -4,11 +4,11 @@ class LoginController
     function indexAction()
     {
         $template = new Template("Login/Index");
-        $form = new Form_Login();
+        $form = new FormLogin();
         $form->handleSubmit();
         
-        if (!empty($GLOBALS['activeUser'])) {
-            $data = array('Form' => "Welcome, " . $GLOBALS['activeUser']->getName() . "! (<a href='/logout'>Logout</a>)");
+        if (User::isLogin()) {
+            $data = array('Form' => "Welcome, " . User::getActiveUser()->getName() . "! (<a href='/logout'>Logout</a>)");
         } else {
             $data = array('Form' => $form->getForm());
         }

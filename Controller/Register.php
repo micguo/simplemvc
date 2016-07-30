@@ -4,7 +4,7 @@ class RegisterController
     function indexAction()
     {
         $template = new Template("Register/Index");
-        $form = new Form_Register();
+        $form = new FormRegister();
         
         $form->handleSubmit();
 

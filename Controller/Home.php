@@ -4,7 +4,7 @@ class HomeController
     function indexAction()
     {
         $template = new Template("Home/Index");
-        $searchForm = new Form_Search();
+        $searchForm = new FormSearch();
         $data = array(
             'Form' => $searchForm->getForm()
         );

@@ -1,8 +1,5 @@
 {
     "autoload": {
         "classmap": ["Model", "Template", "Controller"]
-    },
-    "require": {
-        "twig/twig": "~1.0"
     }
 }

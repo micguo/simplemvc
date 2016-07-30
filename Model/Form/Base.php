@@ -1,5 +1,5 @@
 <?php
-abstract class Form_Base
+abstract class FormBase
 {
     private $errorMessageArray = array();
     private $noticeMessageArray = array();
