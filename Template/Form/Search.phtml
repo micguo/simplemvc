@@ -1,4 +1,7 @@
-<Form>
-    <input type="text" name="keywords" />
-    <input type="submit" value="Search" />
+<div style="color:red">{{ errorMessage }}</div>
+<div style="color:blue">{{ noticeMessage }}</div>
+<Form action="/result" method="post">
+    <input type="text" value="{{ keyword }}" name="keyword" />
+    <input type="submit" name="Search" value="Search" />
 </Form>
+<div>{{ searchResult }}</div>

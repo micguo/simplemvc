@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 define('ROOTDIR', realpath(__DIR__ . '/../'));
 define('TEMPLATEDIR', ROOTDIR . "/Template/");
 define('AUTOLOADER', ROOTDIR . '/vendor/autoload.php');
@@ -8,6 +10,12 @@ if (!file_exists(AUTOLOADER)) {
 }
 
 require_once(AUTOLOADER);
+
+if (!empty($_SESSION['uid'])) {
+    global $activeUser;
+    $activeUser = new User();
+    $activeUser->load($_SESSION['uid']);
+}
 
 $routeArray = explode("/", $_SERVER['REQUEST_URI']);
 try {

@@ -1,5 +1,10 @@
-<Form>
+<div style="color:red">{{ errorMessage }}</div>
+<div style="color:blue">{{ noticeMessage }}</div>
+<Form action="/login" method="post">
+    <label for="email">Email</label>
+    <input type="text" name="email" value="{{ email }}"/><br/>
+    <label for="pass">Password</label>
+    <input type="password" name="pass"/><br/>
 
-
-    <input type="submit" value="Login"/>
+    <input type="submit" name="Login" value="Login"/>
 </Form>

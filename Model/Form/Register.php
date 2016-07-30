@@ -54,7 +54,7 @@ class Form_Register extends Form_Base
     {
         $userObj = new User();
         $userObj->setName($this->formValue['name']);
-        $userObj->setPass($this->formValue['pass']);
+        $userObj->setPassAndHash($this->formValue['pass']);
         $userObj->setEmail($this->formValue['email']);
         $userObj->insert();
 

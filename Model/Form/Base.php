@@ -22,7 +22,7 @@ abstract class Form_Base
         
         $data = array(
             'errorMessage' => $errorMessage,
-            'noticeMessage' => $noticeMessage
+            'noticeMessage' => $noticeMessage,
         );
         foreach ($this->formValue as $key => $value) {
             $data[$key] = $value;
@@ -44,12 +44,12 @@ abstract class Form_Base
         }
     }
 
-    protected function addError($errorString)
+    public function addError($errorString)
     {
         $this->errorMessageArray[] = $errorString;
     }
 
-    protected function addNotice($noticeString)
+    public function addNotice($noticeString)
     {
         $this->noticeMessageArray[] = $noticeString;
     }
