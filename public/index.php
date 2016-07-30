@@ -17,7 +17,9 @@ if (!empty($_SESSION['uid'])) {
     $activeUser->load($_SESSION['uid']);
 }
 
-$routeArray = explode("/", $_SERVER['REQUEST_URI']);
+// Remove GET parameter from url when doing routing process
+$routeArray = explode("/", strtok($_SERVER['REQUEST_URI'], "?"));
+
 try {
     switch (count($routeArray)) {
         case 2:
