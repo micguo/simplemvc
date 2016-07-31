@@ -2,13 +2,13 @@
 <div style="color:blue">{{ noticeMessage }}</div>
 <Form method="post">
     <label for="email">Email</label>
-    <input type="text" name="email" value="{{ email }}"/><br/>
+    <input type="email" name="email" value="{{ email }}" required/><br/>
     <label for="name">Name</label>
-    <input type="text" name="name" value="{{ name }}"/><br/>
+    <input type="text" name="name" value="{{ name }}" required/><br/>
     <label for="pass">Password</label>
-    <input type="password" name="pass"/><br/>
+    <input type="password" name="pass" required/><br/>
     <label for="passconfirm">Confirm Password</label>
-    <input type="password" name="passconfirm"/><br/>
+    <input type="password" name="passconfirm" required/><br/>
 
     <input type="submit" value="Register"/>
 </Form>
