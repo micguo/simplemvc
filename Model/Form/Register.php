@@ -56,7 +56,7 @@ class FormRegister extends FormBase
         $userObj->setName($this->formValue['name']);
         $userObj->setPassAndHash($this->formValue['pass']);
         $userObj->setEmail($this->formValue['email']);
-        $userObj->insert();
+        $userObj->save();
 
         $this->addNotice("User \"" . $this->formValue['name'] . "\" is saved.");
     }

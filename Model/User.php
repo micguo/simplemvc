@@ -15,12 +15,12 @@ class User
     }
 
     /**
-     * Insert User entity to db
+     * Save User entity to db
      * 
      * @return void
-     * @todo  db error handling
+     * @todo  only handle insert right now, should add update in the future
      */
-    public function insert() 
+    public function save() 
     {
         if (empty($this->name) || empty($this->pass) || empty($this->email)) {
             throw new Exception("User is not set correctly, insert failed.");
@@ -185,11 +185,20 @@ class User
     }
 
     // Active user section start
+     
+    /**
+     * Get logged in client's user object
+     * @return User
+     */
     public static function getActiveUser()
     {
         return self::$activeUser;
     }
 
+    /**
+     * Check whether client is logged in
+     * @return boolean [description]
+     */
     public static function isLogin()
     {
         if (!empty(self::$activeUser)) {
@@ -201,6 +210,10 @@ class User
         return $returnVal;
     }
 
+    /**
+     * If we have uid in session, automatically log client in
+     * @return [type] [description]
+     */
     public static function loginBySession()
     {
         if (!empty($_SESSION['uid'])) {
@@ -208,6 +221,13 @@ class User
         }
     }
 
+    /**
+     * Login process
+     * This should not be called directly from outside
+     * 
+     * @param  int $uid [description]
+     * @return void
+     */
     private static function login($uid)
     {
         $userObj = new User();
@@ -215,6 +235,10 @@ class User
         self::$activeUser = $userObj;
     }
 
+    /**
+     * Logout client
+     * @return void
+     */
     public static function logout()
     {
         self::$activeUser = null;

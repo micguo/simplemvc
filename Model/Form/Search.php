@@ -21,11 +21,7 @@ class FormSearch extends FormBase
      */
     protected function submit()
     {
-        if (empty($this->formValue['keyword'])) {
-            $rs = array();
-        } else {
-            $rs = User::search($this->formValue['keyword']);
-        }
+        $rs = User::search($this->formValue['keyword']);
 
         if (!empty($rs)) {
             $out = "";

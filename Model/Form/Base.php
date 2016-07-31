@@ -1,4 +1,7 @@
 <?php
+/**
+ * Base class for all other form class
+ */
 abstract class FormBase
 {
     private $errorMessageArray = array();
@@ -33,29 +36,43 @@ abstract class FormBase
         );
     }
 
+    /**
+     * Main function for form submission handling
+     * @return void
+     */
     public function handleSubmit()
     {
         if (!empty($_POST)) {
             $this->formValue = $_POST;
             $this->validate();
+
+            // If no error, go to next step
             if (!$this->hasError()) {
                 $this->submit();
             }
         }
     }
 
+    /**
+     * Add an error message
+     * @param String $errorString [description]
+     */
     public function addError($errorString)
     {
         $this->errorMessageArray[] = $errorString;
     }
 
+    /**
+     * Add a notice message
+     * @param String $noticeString [description]
+     */
     public function addNotice($noticeString)
     {
         $this->noticeMessageArray[] = $noticeString;
     }
 
     /**
-     * [hasError description]
+     * Check whether we have any error
      * @return boolean
      */
     private function hasError()
